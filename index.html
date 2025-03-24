@@ -4,30 +4,30 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'/>
   <title>Document</title>
-  <script src='js/index.js'></script>
+ 
   <link rel='stylesheet' href='index.css'/>
 </head>
 <body>
   <div id='main'>
+    <h2>Dog Breed Search</h2>
 
-    <h2>GitHub Search</h2>
-
-    <form id='github-form'>
-      <input id='search' type='text' name='search'>
+    <form id='dog-form'>
+      <input id='search' type='text' name='search' placeholder="Enter dog breed">
       <input type='submit' name='submit'/>
     </form>
 
-    <div id='github-container'>
-      <ul id='user-list'>
-
-      </ul>
-
-      <ul id='repos-list'>
-
-      </ul>
+    <div id='dog-container'>
+      <h3> Search Results:</h3>
+      <ul id='breed-list'> </ul>
     </div>
 
+    <div id="dog-display">
+      <h3>Breed Info</h3>
+      <p id="breed-info"></p>
+      <img id="dog-image" src="" alt="great picture">
+    </div>
   </div>
 
+  <script type="module" src='js/index.js'></script>
 </body>
 </html>
