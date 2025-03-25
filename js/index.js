@@ -8,6 +8,9 @@ console.log("API Base URL:", API_URL);
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM has loaded and parsed")
     const form = document.getElementById("dog-form");
+    const dogimg = document.getElementById("dog-image");
+
+    dogimg.style.display = "none"; //on load, hide image
     form.addEventListener("submit", function(event) {
         event.preventDefault()
         console.log("form submited successfully")
@@ -52,12 +55,11 @@ async function fetchDogs(breedName) {
         breedlist.innerHTML = ""; // Clear previous search results
         breedInfo.classList.remove("loading")
         breedInfo.textContent = ""; // Clear previous breed info
-        dogimg.src = ""; // Remove previous image
+        dogimg.style.display = "none"
 
         if (data.length === 0) { 
             breedlist.innerHTML = "<li>No breeds found. Try another name.</li>";
             breedInfo.textContent = "No breed information available.";
-            dogimg.src = "https://via.placeholder.com/300?text=No+Image+Available"; // Placeholder image
             return;
         }
 
@@ -165,9 +167,9 @@ function displayBreedData(breed, imageUrl) {
     if (imageUrl) {
         dogimg.src = imageUrl;
         dogimg.alt = breed.name;
+        dogimg.style.display = "block"; //if image exist, display it
     } else {
-        dogimg.src = "https://via.placeholder.com/150";
-        dogimg.alt = "Image not available";
+        dogimg.style.display = "none"; //hide if not
     }
 
     console.log("Displayed details:", breed.name);
