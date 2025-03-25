@@ -28,10 +28,21 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 //fetchdogs function - fetching the breed url and responding to fetch errors
-
 async function fetchDogs(breedName) {
     const url = `${API_URL}/breeds/search?q=${breedName}`;
     console.log("Fetching info from:", url);
+
+    // Get elements
+    const breedlist = document.getElementById("breed-list");
+    const breedInfo = document.getElementById("breed-info");
+    const dogimg = document.getElementById("dog-image");
+    const spinner = document.getElementById("loading-spinner");
+
+    // Show spinner only
+    spinner.style.display = "block";
+    breedInfo.textContent = ""; 
+    breedlist.innerHTML = ""; 
+    dogimg.style.display = "none"; // Hide the image initially
 
     try {
         const response = await fetch(url, {
@@ -45,30 +56,23 @@ async function fetchDogs(breedName) {
         const data = await response.json();
         console.log("API response:", data);
 
-        // Get elements
-        const breedlist = document.getElementById("breed-list");
-        const breedInfo = document.getElementById("breed-info");
-        breedInfo.textContent = "Loading...";
-        breedInfo.classList.add("loading");
-        const dogimg = document.getElementById("dog-image");
-
-        breedlist.innerHTML = ""; // Clear previous search results
-        breedInfo.classList.remove("loading")
-        breedInfo.textContent = ""; // Clear previous breed info
-        dogimg.style.display = "none"
-
         if (data.length === 0) { 
             breedlist.innerHTML = "<li>No breeds found. Try another name.</li>";
             breedInfo.textContent = "No breed information available.";
+
+            spinner.style.display = "none"; //Hide spinner even if no results found
             return;
         }
 
-        displayBreedList(data); // Show breed results
+        displayBreedList(data);
     } catch (error) {
         console.error("Problem fetching data:", error);
         alert("Error fetching breeds. Please check your connection and try again.");
+    } finally {
+        spinner.style.display = "none"; //This will always run except when there's a `return;`
     }
 }
+
 
 
 //displaying breed result/s on UI
