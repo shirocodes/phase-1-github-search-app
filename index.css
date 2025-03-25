@@ -1,13 +1,136 @@
-#main {
+/* General styles*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-#dog-container {
+#main {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+h2 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+form {
   display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-ul {
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #555;
+  background-color: #222;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+input[type="text"]::placeholder {
+  color: #bbb;
+}
+
+input[type="submit"] {
+  background-color: #064718;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #6bab11;
+}
+
+#dog-container, #dog-display {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #252525;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+#breed-list {
   list-style: none;
+  padding: 0;
+}
+
+#breed-list li {
+  background: #333;
+  color: white;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#breed-list li:hover {
+  background: #064718;
+  color: white;
+  transform: scale(1.05);
+}
+
+#breed-list li.active {
+  background: #064718;
+  color: white;
+  font-weight: bold;
+}
+
+#breed-info {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+#breed-info h2 {
+  color: #1ae350;
+  margin-bottom: 8px;
+}
+
+#dog-image {
+  width: 100%;
+  max-width: 250px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.loading {
+  text-align: center;
+  font-size: 16px;
+  color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  form {
+      flex-direction: column;
+  }
+
+  input[type="submit"] {
+      width: 100%;
+  }
 }
